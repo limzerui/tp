@@ -5,6 +5,8 @@ import seedu.orcashbuddy.expense.Expense;
 
 public class InputValidator {
 
+    private static final String CATEGORY_PATTERN = "[A-Za-z][A-Za-z0-9\\s-]{0,19}";
+
     //@@author limzerui
     public static double validateAmount(String amountStr, String commandName) throws OrCashBuddyException {
         if (amountStr == null || amountStr.isEmpty()) {
@@ -43,7 +45,7 @@ public class InputValidator {
         }
 
         // Magic String
-        if (!trimmed.matches("[A-Za-z][A-Za-z0-9\\s-]{0,19}")) {
+        if (!trimmed.matches(CATEGORY_PATTERN)) {
             throw OrCashBuddyException.invalidCategory(trimmed);
         }
 

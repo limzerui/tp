@@ -52,7 +52,7 @@ public class EditCommand extends Command {
         double updatedAmount = (newAmount != null) ? newAmount : original.getAmount();
         String updatedDescription = (newDescription != null) ? newDescription : original.getDescription();
         String updatedCategory = (newCategory != null) ? newCategory : original.getCategory();
-        boolean markStatus = original.isMarked();
+        boolean wasMarked = original.isMarked();
         LOGGER.log(Level.FINE, "Original expense: {0}", original.formatForDisplay());
         LOGGER.log(Level.FINE, "Updated fields — amount: {0}, desc: {1}, category: {2}",
                 new Object[]{updatedAmount, updatedDescription, updatedCategory});
@@ -60,7 +60,7 @@ public class EditCommand extends Command {
         Expense edited = new Expense(updatedAmount, updatedDescription, updatedCategory);
         expenseManager.replaceExpense(index, edited);
 
-        if  (markStatus) {
+        if (wasMarked) {
             expenseManager.markExpense(index);
         }
 
